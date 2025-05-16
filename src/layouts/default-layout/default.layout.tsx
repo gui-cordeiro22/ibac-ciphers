@@ -29,6 +29,7 @@ export const DefaultLayout: FunctionComponent<DefaultLayoutProps> = ({ contentPa
                         label={item.label}
                         variant="link"
                         isActive={location.pathname === item.path}
+                        isCommingSoon={item.isCommingSoon}
                         handleClick={() => navigate(location.pathname === item.path ? "#" : item.path)}
                     />
                 ))}

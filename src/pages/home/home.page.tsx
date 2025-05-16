@@ -32,6 +32,7 @@ export const HomePage: FunctionComponent = () => {
                                     handleClick={() => navigate(item.path)}
                                     variant="default"
                                     isActive={false}
+                                    isCommingSoon={item.isCommingSoon}
                                 />
                             )
                     )}

@@ -7,14 +7,16 @@ import type { ButtonVariants } from "./button.types";
 type ContainerStyleProps = {
     variant: ButtonVariants;
     isActive: boolean;
+    isCommingSoon: boolean;
 };
 
 export const Container = styled.button<ContainerStyleProps>`
     background-color: inherit;
     padding: 8px;
 
-    ${({ variant }) =>
+    ${({ variant, isCommingSoon }) =>
         variant === "default" &&
+        !isCommingSoon &&
         css`
             color: #000080;
             border: 1px solid #000080;
@@ -29,10 +31,33 @@ export const Container = styled.button<ContainerStyleProps>`
             }
         `}
 
-    ${({ variant }) =>
+    ${({ variant, isCommingSoon }) =>
+        variant === "default" &&
+        !!isCommingSoon &&
+        css`
+            border-color: transparent;
+            cursor: not-allowed;
+            background-color: #ced0dd;
+            color: #4d4d63;
+            width: 200px;
+            border-radius: 200px;
+        `}
+
+    ${({ variant, isCommingSoon }) =>
         variant === "link" &&
+        !isCommingSoon &&
         css`
             color: #000080;
+        `}
+
+    ${({ variant, isCommingSoon }) =>
+        variant === "link" &&
+        !!isCommingSoon &&
+        css`
+            cursor: not-allowed;
+            color: #4d4d63;
+            background-color: #ced0dd;
+            border-radius: 8px;
         `}
 
     ${({ isActive }) =>

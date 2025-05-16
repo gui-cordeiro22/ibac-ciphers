@@ -3,6 +3,7 @@ export type ButtonVariants = "default" | "link";
 export type ButtonData = {
     label: string;
     isActive: boolean;
+    isCommingSoon: boolean;
     variant: ButtonVariants;
 };
 
