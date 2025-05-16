@@ -6,6 +6,7 @@ import type { ButtonVariants } from "./button.types";
 
 type ContainerStyleProps = {
     variant: ButtonVariants;
+    isActive: boolean;
 };
 
 export const Container = styled.button<ContainerStyleProps>`
@@ -33,19 +34,18 @@ export const Container = styled.button<ContainerStyleProps>`
         css`
             color: #000080;
         `}
-`;
-
-type LabelStyleProps = {
-    isActive: boolean;
-};
-
-export const Label = styled.p<LabelStyleProps>`
-    font-size: 14px;
-    font-weight: bold;
 
     ${({ isActive }) =>
         !!isActive &&
         css`
-            text-decoration: underline;
+            border-color: transparent;
+            border-radius: 8px;
+            background-color: #000080;
+            color: #fff;
         `}
+`;
+
+export const Label = styled.p`
+    font-size: 14px;
+    font-weight: bold;
 `;
