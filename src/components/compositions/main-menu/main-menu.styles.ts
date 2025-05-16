@@ -8,6 +8,7 @@ export const Container = styled.div`
     justify-content: center;
     width: 100%;
     height: 100dvh;
+    padding: 16px;
 `;
 
 export const ContentWrapper = styled.div`
@@ -22,13 +23,26 @@ export const ContentWrapper = styled.div`
 `;
 
 export const Title = styled.h1`
-    font-size: 42px;
+    font-size: 16px;
+
+    @media (min-width: 768px) {
+        font-size: 42px;
+    }
 `;
 
 export const Description = styled.h4`
-    font-size: 18px;
+    font-size: 10px;
+
+    @media (min-width: 768px) {
+        font-size: 18px;
+    }
 `;
 
 export const ChurchLogo = styled.img`
     align-self: flex-start;
+    width: 110px;
+
+    @media (min-width: 768px) {
+        width: 120px;
+    }
 `;
