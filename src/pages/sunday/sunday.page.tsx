@@ -28,32 +28,35 @@ export const SundayPage: FunctionComponent = () => {
             try {
                 const cipherListResponse = await restAPI.get(`/cifras`);
 
+                console.log("Dados da API:", cipherListResponse.data);
+
                 if (cipherListResponse.status !== 200) {
                     throw new Error("Erro na requisição");
                 }
 
-                setCiphersData(cipherListResponse.data.data);
+                setCiphersData(cipherListResponse.data);
             } catch (error) {
                 console.error(`Erro ao buscar dados - ${error}`);
             }
         };
 
         fetchData();
-    });
+    }, []);
 
-    console.log(ciphersData);
+    console.log(`Estado: ${ciphersData}`);
 
     return (
         <DefaultLayout
             contentPage={
                 <Fragment>
                     <Input placeholder="Pesquisar..." icon={magnifyingGlassIcon} handleChange={(e: any) => setFilterValue(e.target.value)} />
-                    {ciphers
-                        .filter((cipher) => cipher.musicName.toLowerCase().includes(filterValue.toLowerCase()))
-                        .sort((a, b) => (a.musicName > b.musicName ? 1 : -1))
-                        .map((cipher, index) => (
-                            <CiphersList key={`cipher-list-item-${index}`} musicName={cipher.musicName} musicTone={cipher.tone} />
-                        ))}
+                    {!!ciphersData &&
+                        ciphersData
+                            .filter((cipher) => cipher.name.toLowerCase().includes(filterValue.toLowerCase()))
+                            .sort((a, b) => (a.name > b.name ? 1 : -1))
+                            .map((cipher, index) => (
+                                <CiphersList key={`cipher-list-item-${index}`} musicName={cipher.name} musicTone={cipher.tone} />
+                            ))}
                 </Fragment>
             }
         />
