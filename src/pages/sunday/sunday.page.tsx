@@ -25,8 +25,6 @@ export const SundayPage: FunctionComponent = () => {
             try {
                 const cipherListResponse = await restAPI.get(`/cifras`);
 
-                console.log("Dados da API:", cipherListResponse.data);
-
                 if (cipherListResponse.status !== 200) {
                     throw new Error("Erro na requisição");
                 }
@@ -40,8 +38,6 @@ export const SundayPage: FunctionComponent = () => {
         fetchData();
     }, []);
 
-    console.log(`Estado: ${ciphersData}`);
-
     return (
         <DefaultLayout
             contentPage={
@@ -51,9 +47,7 @@ export const SundayPage: FunctionComponent = () => {
                         ciphersData
                             .filter((cipher) => cipher.name.toLowerCase().includes(filterValue.toLowerCase()))
                             .sort((a, b) => (a.name > b.name ? 1 : -1))
-                            .map((cipher, index) => (
-                                <CiphersList key={`cipher-list-item-${index}`} musicName={cipher.name} musicTone={cipher.tone} />
-                            ))}
+                            .map((cipher) => <CiphersList key={`cipher-list-item-${cipher.id}`} musicName={cipher.name} musicTone={cipher.tone} />)}
                 </Fragment>
             }
         />
