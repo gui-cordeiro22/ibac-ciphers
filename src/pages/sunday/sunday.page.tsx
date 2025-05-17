@@ -12,9 +12,6 @@ import type { CiphersData } from "./sunday.types";
 // Assets
 import magnifyingGlassIcon from "../../assets/lupa.png";
 
-// Store
-import { ciphers } from "../../stores/ciphers.stores";
-
 // Services
 import { restAPI } from "../../services/api";
 
