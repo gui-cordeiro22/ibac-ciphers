@@ -5,6 +5,7 @@ import { Fragment, useEffect, useState, type FunctionComponent } from "react";
 import { DefaultLayout } from "../../layouts/default-layout";
 import { CiphersList } from "../../components/compositions/ciphers-list";
 import { Input } from "../../components/elements/input";
+import { LoaderComponent } from "../../components/elements/loader";
 
 // Types
 import type { CiphersData } from "./sunday.types";
@@ -29,7 +30,9 @@ export const SundayPage: FunctionComponent = () => {
                     throw new Error("Erro na requisição");
                 }
 
-                setCiphersData(cipherListResponse.data);
+                setTimeout(() => {
+                    setCiphersData(cipherListResponse.data);
+                }, 3000);
             } catch (error) {
                 console.error(`Erro ao buscar dados - ${error}`);
             }
@@ -37,6 +40,10 @@ export const SundayPage: FunctionComponent = () => {
 
         fetchData();
     }, []);
+
+    if (!ciphersData) {
+        return <LoaderComponent />;
+    }
 
     return (
         <DefaultLayout
