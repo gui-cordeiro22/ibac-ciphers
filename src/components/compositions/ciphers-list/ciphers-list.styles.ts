@@ -33,7 +33,6 @@ export const CiphersWrapper = styled.div`
 
 export const CipherData = styled.p`
     font-size: 18px;
-    white-space: nowrap;
 `;
 
 export const Separator = styled.div`

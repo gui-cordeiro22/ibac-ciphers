@@ -71,6 +71,10 @@ export const Container = styled.button<ContainerStyleProps>`
 `;
 
 export const Label = styled.p`
-    font-size: 14px;
+    font-size: 12px;
     font-weight: bold;
+
+    @media (min-width: 768px) {
+        font-size: 14px;
+    }
 `;
