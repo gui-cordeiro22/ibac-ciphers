@@ -34,8 +34,3 @@ export const CiphersWrapper = styled.div`
 export const CipherData = styled.p`
     font-size: 18px;
 `;
-
-export const Separator = styled.div`
-    content: " ";
-    border-left: 1px solid #000;
-`;

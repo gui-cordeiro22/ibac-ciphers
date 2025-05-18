@@ -2,7 +2,7 @@
 import type { FunctionComponent } from "react";
 
 // Styles
-import { CipherData, CiphersWrapper, Container, ContentWrapper, Separator } from "./ciphers-list.styles";
+import { CipherData, CiphersWrapper, Container, ContentWrapper } from "./ciphers-list.styles";
 
 // Types
 import type { CipherListProps } from "./ciphers-list.types";
@@ -12,11 +12,9 @@ export const CiphersList: FunctionComponent<CipherListProps> = ({ musicName, mus
         <Container>
             <ContentWrapper>
                 <CiphersWrapper>
-                    <CipherData>፠ {musicName}</CipherData>
-
-                    <Separator />
-
-                    <CipherData>Tom: {musicTone}</CipherData>
+                    <CipherData>
+                        ፠ {musicName} | Tom: {musicTone}
+                    </CipherData>
                 </CiphersWrapper>
             </ContentWrapper>
         </Container>
