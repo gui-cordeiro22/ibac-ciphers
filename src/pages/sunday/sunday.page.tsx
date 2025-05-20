@@ -73,7 +73,9 @@ export const SundayPage: FunctionComponent = () => {
                         formElementComposition={
                             <RegisterForm
                                 handleSubmit={() => console.log("Submit do form")}
+                                nameInputLabel="Nome"
                                 nameInputComposition={<Input placeholder="Nome da música" />}
+                                toneInputLabel="Tom"
                                 toneInputComposition={<Input placeholder="Informe o tom da música" />}
                             />
                         }
