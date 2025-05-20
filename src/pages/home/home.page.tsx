@@ -11,7 +11,7 @@ import { Button } from "../../components/elements/button";
 import ibacLogo from "../../assets/ibac-logo.png";
 
 // Store
-import { mainMenuData } from "../../stores/main-menu.stores";
+import { mainMenuData } from "../../components/compositions/main-menu/main-menu.stores";
 
 export const HomePage: FunctionComponent = () => {
     const navigate = useNavigate();
