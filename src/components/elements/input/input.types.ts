@@ -11,7 +11,7 @@ export type InputElement = {
 };
 
 export type InputAction = {
-    handleChange: (event: any) => void;
+    handleChange?: (event: any) => void;
 };
 
 export type InputProps = InputData & InputElement & InputAction;

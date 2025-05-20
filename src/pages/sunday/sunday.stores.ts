@@ -26,6 +26,14 @@ export const useCiphersStore = (): CiphersStore => {
         setState(defaultState);
     }, [setState]);
 
+    const createCiphers: CiphersActions["createCiphers"] = useCallback(async () => {
+        try {
+            return;
+        } catch (error) {
+            return console.error(error);
+        }
+    }, []);
+
     const fetchCiphers: CiphersActions["fetchCiphers"] = useCallback(async () => {
         try {
             setState((draft: CiphersState) => {
@@ -57,6 +65,7 @@ export const useCiphersStore = (): CiphersStore => {
         actions: {
             clearState,
             fetchCiphers,
+            createCiphers,
         },
     };
 };

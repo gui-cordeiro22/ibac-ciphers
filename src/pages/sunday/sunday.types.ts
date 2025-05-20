@@ -1,5 +1,5 @@
 export type CiphersCiphersData = {
-    id: number;
+    _id?: number;
     name: string;
     tone: string;
 }[];
@@ -16,6 +16,7 @@ export type CiphersState = {
 export type CiphersActions = {
     clearState: () => void;
     fetchCiphers: (data?: CiphersCiphersData[]) => Promise<boolean>;
+    createCiphers: (data: CiphersCiphersData) => Promise<boolean>;
 };
 
 export type CiphersStore = {
