@@ -16,10 +16,10 @@ export const ContentWrapper = styled.div`
     align-items: center;
     width: 100%;
     max-width: 1440px;
-    padding: 8px;
+    //padding: 8px;
 
     @media (min-width: 768px) {
-        padding: 8px 32px;
+        //padding: 8px 32px;
     }
 `;
 
