@@ -6,6 +6,7 @@ import { DefaultLayout } from "../../layouts/default-layout";
 import { CiphersList } from "../../components/compositions/ciphers-list";
 import { Input } from "../../components/elements/input";
 import { LoaderComponent } from "../../components/elements/loader";
+import { Button } from "../../components/elements/button";
 
 // Assets
 import magnifyingGlassIcon from "../../assets/lupa.png";
@@ -38,7 +39,20 @@ export const SundayPage: FunctionComponent = () => {
         <DefaultLayout
             contentPage={
                 <Fragment>
-                    <Input placeholder="Pesquisar..." icon={magnifyingGlassIcon} handleChange={(e: any) => setFilterValue(e.target.value)} />
+                    <Input
+                        placeholder="Pesquisar..."
+                        icon={magnifyingGlassIcon}
+                        handleChange={(e: any) => setFilterValue(e.target.value)}
+                        buttonElement={
+                            <Button
+                                label="+ Adicionar cifra"
+                                variant="link"
+                                isActive={false}
+                                isCommingSoon={false}
+                                handleClick={() => console.log("Adicionar cifra")}
+                            />
+                        }
+                    />
                     {!!ciphers?.data &&
                         (ciphers?.data ?? [])
                             .filter((cipher: any) => cipher.name.toLowerCase().includes(filterValue.toLowerCase()))
