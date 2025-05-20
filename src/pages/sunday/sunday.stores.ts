@@ -8,6 +8,8 @@ import { restAPI } from "../../services/api";
 
 // Types
 import type { CiphersState, CiphersActions, CiphersStore } from "./sunday.types";
+
+// Helpers
 import { ciphersBuilder } from "./sunday.helpers";
 
 const defaultState = {
@@ -30,7 +32,7 @@ export const useCiphersStore = (): CiphersStore => {
                 draft.ciphers.isLoading = true;
             });
 
-            const response = await restAPI.get<any>(`/cifras`);
+            const response = await restAPI.get(`/cifras`);
 
             const formattedCiphers = ciphersBuilder(response);
 

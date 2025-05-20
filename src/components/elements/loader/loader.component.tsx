@@ -8,7 +8,10 @@ export const LoaderComponent: FunctionComponent = () => {
     return (
         <Loader>
             <LoaderElement />
+
             <LoaderLabel>Preparando lista de cifras</LoaderLabel>
+
+            <LoaderLabel>Isso pode levar alguns minutos...</LoaderLabel>
         </Loader>
     );
 };
