@@ -1,8 +1,16 @@
+// Dependencies
 import type { FunctionComponent } from "react";
-import type { InputProps } from "./input.types";
+
+// Components
+import { ConditionallyRender } from "../../../utils/conditionally-render";
+
+//Styles
 import { Container, ContentWrapper, IconElement, InputElement, InputElementWrapper } from "./input.styles";
 
-export const Input: FunctionComponent<InputProps> = ({ placeholder, icon, handleChange }) => {
+// Types
+import type { InputProps } from "./input.types";
+
+export const Input: FunctionComponent<InputProps> = ({ placeholder, icon, buttonElement, handleChange }) => {
     return (
         <Container>
             <ContentWrapper>
@@ -11,6 +19,8 @@ export const Input: FunctionComponent<InputProps> = ({ placeholder, icon, handle
 
                     <IconElement src={icon} />
                 </InputElementWrapper>
+
+                <ConditionallyRender shouldRender={!!buttonElement} content={buttonElement} />
             </ContentWrapper>
         </Container>
     );

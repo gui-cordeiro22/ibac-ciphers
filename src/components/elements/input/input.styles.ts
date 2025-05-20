@@ -12,8 +12,8 @@ export const Container = styled.div`
 
 export const ContentWrapper = styled.div`
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    align-items: center;
     width: 100%;
     max-width: 1440px;
     padding: 8px;
