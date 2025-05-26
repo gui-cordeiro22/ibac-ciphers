@@ -6,8 +6,10 @@ export const Container = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    position: sticky;
+    background-color: #fbfbf8;
+    top: 0;
     width: 100%;
-    background-color: transparent;
 `;
 
 export const ContentWrapper = styled.div`
