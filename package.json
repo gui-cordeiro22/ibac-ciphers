@@ -4,8 +4,9 @@
     "version": "0.0.0",
     "type": "module",
     "scripts": {
+        "start": "node dist/main.cjs",
         "dev": "vite",
-        "build": "tsup src",
+        "build": "vite build",
         "lint": "eslint .",
         "preview": "vite preview"
     },
