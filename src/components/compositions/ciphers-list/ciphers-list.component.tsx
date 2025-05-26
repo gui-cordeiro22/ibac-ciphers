@@ -11,7 +11,6 @@ export const CiphersList: FunctionComponent<CipherListProps> = ({ musicName, mus
     return (
         <Container>
             <ContentWrapper>
-                {/* TODO: receber o componente de input para pesquisa como ReactNode aqui*/}
                 <CiphersWrapper>
                     <CipherData>
                         ፠ {musicName} | Tom: {musicTone}

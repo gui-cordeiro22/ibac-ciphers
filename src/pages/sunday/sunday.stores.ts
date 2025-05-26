@@ -7,7 +7,7 @@ import axios from "axios";
 import { restAPI } from "../../services/api";
 
 // Types
-import type { CiphersState, CiphersActions, CiphersStore } from "./sunday.types";
+import type { CiphersState, CiphersActions, CiphersStore, CiphersCiphersData } from "./sunday.types";
 
 // Helpers
 import { ciphersBuilder } from "./sunday.helpers";
@@ -26,11 +26,38 @@ export const useCiphersStore = (): CiphersStore => {
         setState(defaultState);
     }, [setState]);
 
-    const createCiphers: CiphersActions["createCiphers"] = useCallback(async () => {
+    const createCiphers: CiphersActions["createCiphers"] = useCallback(async (cipher: CiphersCiphersData) => {
         try {
-            return;
+            setState((draft: CiphersState) => {
+                draft.ciphers = {
+                    ...draft.ciphers,
+                    isLoading: true,
+                };
+            });
+
+            await restAPI.post("/cifras/criar", cipher);
+
+            setState((draft: CiphersState) => {
+                draft.ciphers = {
+                    ...draft.ciphers,
+                    isLoading: false,
+                };
+            });
+
+            console.log("Cifra criada com sucesso!");
+
+            return true;
         } catch (error) {
-            return console.error(error);
+            console.error(error);
+
+            setState((draft: CiphersState) => {
+                draft.ciphers = {
+                    ...draft.ciphers,
+                    isLoading: false,
+                };
+            });
+
+            return false;
         }
     }, []);
 

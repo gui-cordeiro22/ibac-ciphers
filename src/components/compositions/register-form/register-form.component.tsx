@@ -12,10 +12,10 @@ export const RegisterForm: FunctionComponent<RegisterFormProps> = ({
     nameInputComposition,
     toneInputLabel,
     toneInputComposition,
-    handleSubmit,
+    handleSubmitForm,
 }) => {
     return (
-        <Container onSubmit={handleSubmit}>
+        <Container onSubmit={handleSubmitForm}>
             <InputWrapper>
                 {nameInputLabel}
                 {nameInputComposition}
