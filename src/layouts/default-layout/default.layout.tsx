@@ -1,5 +1,5 @@
 // Dependencies
-import { Fragment, type FunctionComponent } from "react";
+import { type FunctionComponent } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
 // Components
