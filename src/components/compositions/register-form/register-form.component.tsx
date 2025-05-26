@@ -2,7 +2,7 @@
 import type { FunctionComponent } from "react";
 
 // Styles
-import { Container } from "./register-form.styles";
+import { ButtonSubmit, Container, InputWrapper } from "./register-form.styles";
 
 // Types
 import type { RegisterFormProps } from "./register-form.types";
@@ -16,14 +16,17 @@ export const RegisterForm: FunctionComponent<RegisterFormProps> = ({
 }) => {
     return (
         <Container onSubmit={handleSubmit}>
-            {nameInputLabel}
+            <InputWrapper>
+                {nameInputLabel}
+                {nameInputComposition}
+            </InputWrapper>
 
-            {nameInputComposition}
+            <InputWrapper>
+                {toneInputLabel}
+                {toneInputComposition}
+            </InputWrapper>
 
-            {toneInputLabel}
-            {toneInputComposition}
-
-            <button type="submit">+ Adicionar cifra</button>
+            <ButtonSubmit type="submit">+ Adicionar cifra</ButtonSubmit>
         </Container>
     );
 };

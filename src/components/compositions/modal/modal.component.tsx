@@ -1,10 +1,14 @@
 // Dependencies
 import { type FunctionComponent } from "react";
 
+// Styles
+import { Container, ContentWrapper, FormCompositionWrapper, Title } from "./modal.styles";
+
+// Components
+import { ConditionallyRender } from "../../../utils/conditionally-render";
+
 // Types
 import type { ModalProps } from "./modal.types";
-import { ConditionallyRender } from "../../../utils/conditionally-render";
-import { Container, ContentWrapper, FormCompositionWrapper, Title } from "./modal.styles";
 
 export const Modal: FunctionComponent<ModalProps> = ({ title, description, isOpened, formElementComposition }) => {
     return (
