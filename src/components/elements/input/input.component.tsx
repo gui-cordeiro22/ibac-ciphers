@@ -10,12 +10,12 @@ import { Container, ContentWrapper, IconElement, InputElement, InputElementWrapp
 // Types
 import type { InputProps } from "./input.types";
 
-export const Input: FunctionComponent<InputProps> = ({ placeholder, icon, buttonElement, handleChange }) => {
+export const Input: FunctionComponent<InputProps> = ({ placeholder, icon, buttonElement, handleChange, ...defaultProps }) => {
     return (
         <Container>
             <ContentWrapper>
                 <InputElementWrapper>
-                    <InputElement type="text" placeholder={placeholder} onChange={handleChange} />
+                    <InputElement type="text" placeholder={placeholder} onChange={handleChange} {...defaultProps} />
 
                     <IconElement src={icon} />
                 </InputElementWrapper>

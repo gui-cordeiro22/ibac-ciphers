@@ -4,6 +4,12 @@ export type CiphersCiphersData = {
     tone: string;
 }[];
 
+export type RegisterFormResponseData = {
+    _id?: number;
+    name: string;
+    tone: string;
+};
+
 export type CiphersData<T> = {
     data?: T;
     isLoading: boolean;

@@ -12,7 +12,7 @@ export type RegisterFormElements = {
 };
 
 export type RegisterFormAction = {
-    handleSubmit: () => void;
+    handleSubmitForm: () => void;
 };
 
 export type RegisterFormProps = RegisterFormData & RegisterFormElements & RegisterFormAction;

@@ -1,7 +1,7 @@
 // Dependencies
-import type { ReactNode } from "react";
+import type { InputHTMLAttributes, ReactNode } from "react";
 
-export type InputData = {
+export type InputData = Partial<InputHTMLAttributes<HTMLInputElement>> & {
     placeholder: string;
     icon?: string;
 };
