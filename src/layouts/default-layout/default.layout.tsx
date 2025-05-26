@@ -5,6 +5,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 // Components
 import { Header } from "../../components/sections/header";
 import { Button } from "../../components/elements/button";
+import { Footer } from "../../components/sections/footer";
 
 // Styles
 import { Container, ContentPageWrapper } from "./default.layout.styles";
@@ -39,6 +40,8 @@ export const DefaultLayout: FunctionComponent<DefaultLayoutProps> = ({ contentPa
             />
 
             <ContentPageWrapper>{contentPage}</ContentPageWrapper>
+
+            <Footer copyrightLabel="© Todos os direitos reservados 2025 | Cord.io " />
         </Container>
     );
 };
