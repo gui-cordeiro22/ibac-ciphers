@@ -11,7 +11,7 @@ export const LoaderComponent: FunctionComponent = () => {
 
             <LoaderLabel>Preparando lista de cifras</LoaderLabel>
 
-            <LoaderLabel>Isso pode levar alguns minutos...</LoaderLabel>
+            <LoaderLabel>Isso pode levar alguns segundos...</LoaderLabel>
         </Loader>
     );
 };
