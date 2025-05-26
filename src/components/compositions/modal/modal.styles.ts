@@ -31,6 +31,11 @@ export const ContentWrapper = styled.div`
     }
 `;
 
+export const CloseButton = styled.small`
+    cursor: pointer;
+    align-self: flex-end;
+`;
+
 export const Title = styled.h3`
     font-weight: bold;
     text-align: center;

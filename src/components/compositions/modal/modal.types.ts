@@ -11,4 +11,8 @@ export type ModalElement = {
     formElementComposition: ReactNode;
 };
 
-export type ModalProps = ModalData & ModalElement;
+export type ModalAction = {
+    handleClose: () => void;
+};
+
+export type ModalProps = ModalData & ModalElement & ModalAction;

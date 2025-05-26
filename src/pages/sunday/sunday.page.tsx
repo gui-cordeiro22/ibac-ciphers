@@ -98,6 +98,7 @@ export const SundayPage: FunctionComponent = () => {
                     <Modal
                         title="Adicionar nova cifra"
                         isOpened={isModalOpened}
+                        handleClose={() => setIsModalOpened(false)}
                         formElementComposition={
                             <RegisterForm
                                 handleSubmitForm={handleSubmit(handleCreateCipher)}
