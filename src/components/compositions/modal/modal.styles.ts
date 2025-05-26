@@ -15,7 +15,9 @@ export const Container = styled.div`
 export const ContentWrapper = styled.div`
     display: flex;
     flex-direction: column;
-    background-color: red;
+    background-color: rgb(218, 218, 218);
+    border: 1px solid #000080;
+    border-radius: 8px;
     width: 400px;
     padding: 8px;
 

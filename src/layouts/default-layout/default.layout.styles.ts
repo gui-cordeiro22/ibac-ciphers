@@ -10,20 +10,16 @@ export const Container = styled.div`
     background-color: transparent;
 `;
 
-export const ContentWrapper = styled.div`
+export const ContentPageWrapper = styled.div`
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: center;
+    padding: 8px;
     width: 100%;
-`;
+    max-width: 1440px;
 
-export const CiphersWrapper = styled.div`
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    padding: 10px 0;
-`;
-
-export const CipherData = styled.p`
-    font-size: 18px;
+    @media (min-width: 768px) {
+        padding: 8px 32px;
+    }
 `;

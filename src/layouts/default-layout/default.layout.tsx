@@ -6,6 +6,9 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { Header } from "../../components/sections/header";
 import { Button } from "../../components/elements/button";
 
+// Styles
+import { Container, ContentPageWrapper } from "./default.layout.styles";
+
 // Types
 import type { DefaultLayoutProps } from "./default.layout.types";
 
@@ -20,7 +23,7 @@ export const DefaultLayout: FunctionComponent<DefaultLayoutProps> = ({ contentPa
     const location = useLocation();
 
     return (
-        <Fragment>
+        <Container>
             <Header
                 imageSource={ibacLogo}
                 navLinkCompositions={mainMenuData.map((item, index) => (
@@ -34,7 +37,8 @@ export const DefaultLayout: FunctionComponent<DefaultLayoutProps> = ({ contentPa
                     />
                 ))}
             />
-            {contentPage}
-        </Fragment>
+
+            <ContentPageWrapper>{contentPage}</ContentPageWrapper>
+        </Container>
     );
 };
