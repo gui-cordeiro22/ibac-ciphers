@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 // Components
 import { DefaultLayout } from "../../layouts/default-layout";
-import { CiphersList } from "../../components/compositions/ciphers-list";
+import { CipherListWrapper, CiphersList } from "../../components/compositions/ciphers-list";
 import { Input } from "../../components/elements/input";
 import { LoaderComponent } from "../../components/elements/loader";
 import { Button } from "../../components/elements/button";
@@ -26,7 +26,9 @@ import type { RegisterFormResponseData } from "./sunday.types";
 import { useCiphersStore } from "./sunday.stores";
 
 // Utils
-import { formatCounterMessage } from "./sunday.helpers";
+import { divideVertically, formatCounterMessage } from "./sunday.helpers";
+import { useWindowDimensions } from "../../hooks/window-dimensions";
+import { ternary } from "../../utils/ternary";
 
 export const SundayPage: FunctionComponent = () => {
     const { register, handleSubmit, formState, reset } = useForm<RegisterFormResponseData>({
@@ -40,6 +42,8 @@ export const SundayPage: FunctionComponent = () => {
     const [filterValue, setFilterValue] = useState("");
 
     const [isModalOpened, setIsModalOpened] = useState(false);
+
+    const width = useWindowDimensions().width;
 
     const { actions, state } = useCiphersStore();
 
@@ -78,6 +82,20 @@ export const SundayPage: FunctionComponent = () => {
 
     const cipherCounterMessage = formatCounterMessage(ciphersListLength);
 
+    const sortedCiphers =
+        !!ciphersResponse &&
+        (ciphersResponse ?? [])
+            .filter((cipher: any) => cipher.name.toLowerCase().includes(filterValue.toLowerCase()))
+            .sort((a: any, b: any) => (a.name > b.name ? 1 : -1));
+
+    const columnsNumber = ternary([
+        [width > 1024, 4],
+        [width >= 768, 3],
+        [width < 768, 1],
+    ]);
+
+    const columns = divideVertically(sortedCiphers, columnsNumber ?? 1);
+
     return (
         <DefaultLayout
             contentPage={
@@ -98,13 +116,15 @@ export const SundayPage: FunctionComponent = () => {
                         ciphersCounter={cipherCounterMessage}
                     />
 
-                    {!!ciphersResponse &&
-                        (ciphersResponse ?? [])
-                            .filter((cipher: any) => cipher.name.toLowerCase().includes(filterValue.toLowerCase()))
-                            .sort((a: any, b: any) => (a.name > b.name ? 1 : -1))
-                            .map((cipher: any) => (
-                                <CiphersList key={`cipher-list-item-${cipher._id}`} musicName={cipher.name} musicTone={cipher.tone} />
-                            ))}
+                    <CipherListWrapper
+                        ciphersListComposition={columns.map((column, index) => (
+                            <div key={index}>
+                                {column.map((cipher: any) => (
+                                    <CiphersList key={`cipher-list-item-${cipher._id}`} musicName={cipher.name} musicTone={cipher.tone} />
+                                ))}
+                            </div>
+                        ))}
+                    />
 
                     <Modal
                         title="Adicionar nova cifra"

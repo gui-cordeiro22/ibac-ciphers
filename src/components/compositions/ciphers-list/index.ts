@@ -1,4 +1,4 @@
 // Component
-import { CiphersList } from "./ciphers-list.component";
+import { CiphersList, CipherListWrapper } from "./ciphers-list.component";
 
-export { CiphersList };
+export { CiphersList, CipherListWrapper };

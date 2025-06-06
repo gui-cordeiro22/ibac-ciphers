@@ -2,10 +2,10 @@
 import type { FunctionComponent } from "react";
 
 // Styles
-import { CipherData, CiphersWrapper, Container, ContentWrapper } from "./ciphers-list.styles";
+import { CipherData, CipherListWrapperContainer, CiphersWrapper, Container, ContentWrapper } from "./ciphers-list.styles";
 
 // Types
-import type { CipherListProps } from "./ciphers-list.types";
+import type { CipherListProps, CipherListWrapperProps } from "./ciphers-list.types";
 
 export const CiphersList: FunctionComponent<CipherListProps> = ({ musicName, musicTone }) => {
     return (
@@ -19,4 +19,8 @@ export const CiphersList: FunctionComponent<CipherListProps> = ({ musicName, mus
             </ContentWrapper>
         </Container>
     );
+};
+
+export const CipherListWrapper: FunctionComponent<CipherListWrapperProps> = ({ ciphersListComposition }) => {
+    return <CipherListWrapperContainer>{ciphersListComposition}</CipherListWrapperContainer>;
 };
