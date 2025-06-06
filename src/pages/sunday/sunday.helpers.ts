@@ -18,7 +18,7 @@ export const formatCounterMessage = (ciphersLength: number) => {
     return ciphersLength > 0 ? `Mostrando: ${ciphersLength} cifras encontradas` : "Nenhuma resultado encontrado";
 };
 
-export const divideVertically = <T>(list: T[], numberOfColumns: number): T[][] => {
+export const buildLayoutColumns = <T>(list: T[], numberOfColumns: number): T[][] => {
     const itemsPerColumn = Math.ceil(list.length / numberOfColumns);
 
     const columns: T[][] = Array.from({ length: numberOfColumns }, (_, i) => list.slice(i * itemsPerColumn, (i + 1) * itemsPerColumn));

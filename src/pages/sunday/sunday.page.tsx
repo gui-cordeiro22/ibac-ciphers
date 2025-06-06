@@ -26,7 +26,7 @@ import type { RegisterFormResponseData } from "./sunday.types";
 import { useCiphersStore } from "./sunday.stores";
 
 // Utils
-import { divideVertically, formatCounterMessage } from "./sunday.helpers";
+import { buildLayoutColumns, formatCounterMessage } from "./sunday.helpers";
 import { useWindowDimensions } from "../../hooks/window-dimensions";
 import { ternary } from "../../utils/ternary";
 
@@ -94,7 +94,7 @@ export const SundayPage: FunctionComponent = () => {
         [width < 768, 1],
     ]);
 
-    const columns = divideVertically(sortedCiphers, columnsNumber ?? 1);
+    const columns = buildLayoutColumns(sortedCiphers, columnsNumber ?? 1);
 
     return (
         <DefaultLayout
