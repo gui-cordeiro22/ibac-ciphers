@@ -11,6 +11,7 @@ import { LoaderComponent } from "../../components/elements/loader";
 import { Button } from "../../components/elements/button";
 import { Modal } from "../../components/compositions/modal";
 import { RegisterForm } from "../../components/compositions/register-form";
+import { ActionElements } from "../../components/sections/action-elements";
 
 // Schema
 import { registerFormSchema } from "../../components/compositions/register-form/register-form.schema";
@@ -23,6 +24,9 @@ import type { RegisterFormResponseData } from "./sunday.types";
 
 // Stores
 import { useCiphersStore } from "./sunday.stores";
+
+// Utils
+import { formatCounterMessage } from "./sunday.helpers";
 
 export const SundayPage: FunctionComponent = () => {
     const { register, handleSubmit, formState, reset } = useForm<RegisterFormResponseData>({
@@ -69,15 +73,20 @@ export const SundayPage: FunctionComponent = () => {
         }
     };
 
+    const ciphersListLength =
+        !!ciphersResponse && (ciphersResponse ?? []).filter((cipher: any) => cipher.name.toLowerCase().includes(filterValue.toLowerCase())).length;
+
+    const cipherCounterMessage = formatCounterMessage(ciphersListLength);
+
     return (
         <DefaultLayout
             contentPage={
                 <Fragment>
-                    <Input
-                        placeholder="Pesquisar..."
-                        icon={magnifyingGlassIcon}
-                        handleChange={(e: any) => setFilterValue(e.target.value)}
-                        buttonElement={
+                    <ActionElements
+                        inputCompositions={
+                            <Input placeholder="Pesquisar..." icon={magnifyingGlassIcon} handleChange={(e: any) => setFilterValue(e.target.value)} />
+                        }
+                        buttonCompositions={
                             <Button
                                 label="+ Adicionar cifra"
                                 variant="link"
@@ -86,7 +95,9 @@ export const SundayPage: FunctionComponent = () => {
                                 handleClick={() => setIsModalOpened(!isModalOpened)}
                             />
                         }
+                        ciphersCounter={cipherCounterMessage}
                     />
+
                     {!!ciphersResponse &&
                         (ciphersResponse ?? [])
                             .filter((cipher: any) => cipher.name.toLowerCase().includes(filterValue.toLowerCase()))

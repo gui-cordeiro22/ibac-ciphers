@@ -13,3 +13,7 @@ export const ciphersBuilder = (ciphersResponse: AxiosResponse<any>): CiphersCiph
         };
     });
 };
+
+export const formatCounterMessage = (ciphersLength: number) => {
+    return ciphersLength > 0 ? `Mostrando: ${ciphersLength} cifras encontradas` : "Nenhuma resultado encontrado";
+};
