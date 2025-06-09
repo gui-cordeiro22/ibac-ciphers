@@ -8,6 +8,7 @@ import { ButtonSubmit, Container, InputWrapper } from "./register-form.styles";
 import type { RegisterFormProps } from "./register-form.types";
 
 export const RegisterForm: FunctionComponent<RegisterFormProps> = ({
+    isLoading,
     nameInputLabel,
     nameInputComposition,
     toneInputLabel,
@@ -26,7 +27,7 @@ export const RegisterForm: FunctionComponent<RegisterFormProps> = ({
                 {toneInputComposition}
             </InputWrapper>
 
-            <ButtonSubmit type="submit">+ Adicionar cifra</ButtonSubmit>
+            <ButtonSubmit type="submit">{!!isLoading ? "Carregando..." : "+ Adicionar cifra"}</ButtonSubmit>
         </Container>
     );
 };

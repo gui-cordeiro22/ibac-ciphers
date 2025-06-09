@@ -1,22 +1,21 @@
 // Dependencies
-import { Fragment } from 'react'
+import { Fragment } from "react";
+import { ToastContainer } from "react-toastify";
 
 // Styles
-import { GlobalStyle } from './styles/global'
+import { GlobalStyle } from "./styles/global";
 
 // Routes
-import { ApplicationRoutes } from './routes'
-
+import { ApplicationRoutes } from "./routes";
 
 function App() {
-
-  return (
-    <Fragment>
-      <GlobalStyle />
-
-      <ApplicationRoutes />
-    </Fragment>
-  )
+    return (
+        <Fragment>
+            <GlobalStyle />
+            <ToastContainer theme="light" position="bottom-right" limit={1} />
+            <ApplicationRoutes />
+        </Fragment>
+    );
 }
 
-export default App
+export default App;

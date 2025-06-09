@@ -2,7 +2,7 @@ export type CiphersCiphersData = {
     _id?: number;
     name: string;
     tone: string;
-}[];
+};
 
 export type RegisterFormResponseData = {
     _id?: number;

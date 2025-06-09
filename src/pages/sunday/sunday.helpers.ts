@@ -25,3 +25,9 @@ export const buildLayoutColumns = <T>(list: T[], numberOfColumns: number): T[][]
 
     return columns;
 };
+
+export const cipherAlreadyExists = (ciphers: any, data: CiphersCiphersData) => {
+    return (ciphers?.data ?? []).some(
+        (cipher: CiphersCiphersData) => cipher.name.toLowerCase() === data.name.toLowerCase() && cipher.tone.toLowerCase() === data.tone.toLowerCase()
+    );
+};

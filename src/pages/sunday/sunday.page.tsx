@@ -2,6 +2,7 @@
 import { Fragment, useEffect, useState, type FunctionComponent } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { toast } from "react-toastify";
 
 // Components
 import { DefaultLayout } from "../../layouts/default-layout";
@@ -26,7 +27,7 @@ import type { RegisterFormResponseData } from "./sunday.types";
 import { useCiphersStore } from "./sunday.stores";
 
 // Utils
-import { buildLayoutColumns, formatCounterMessage } from "./sunday.helpers";
+import { buildLayoutColumns, cipherAlreadyExists, formatCounterMessage } from "./sunday.helpers";
 import { useWindowDimensions } from "../../hooks/window-dimensions";
 import { ternary } from "../../utils/ternary";
 
@@ -40,6 +41,8 @@ export const SundayPage: FunctionComponent = () => {
         },
     });
     const [filterValue, setFilterValue] = useState("");
+
+    const [isLoading, setIsLoading] = useState(false);
 
     const [isModalOpened, setIsModalOpened] = useState(false);
 
@@ -66,14 +69,29 @@ export const SundayPage: FunctionComponent = () => {
     const ciphersResponse = ciphers?.data;
 
     const handleCreateCipher = async (data: any) => {
+        const alreadyExists = cipherAlreadyExists(ciphers, data);
+
+        if (alreadyExists) {
+            reset();
+            setIsModalOpened(false);
+            toast.error("Já existe uma cifra cadastrada com esses dados.");
+            return;
+        }
+
+        setIsLoading(true);
+
         const hasSended = await createCiphers(data);
 
         if (hasSended) {
             reset();
 
+            setIsLoading(false);
+
             setIsModalOpened(false);
 
             fetchCiphers();
+
+            toast.success("Cifra criada com sucesso!");
         }
     };
 
@@ -132,6 +150,7 @@ export const SundayPage: FunctionComponent = () => {
                         handleClose={() => setIsModalOpened(false)}
                         formElementComposition={
                             <RegisterForm
+                                isLoading={isLoading}
                                 handleSubmitForm={handleSubmit(handleCreateCipher)}
                                 nameInputLabel="Nome"
                                 nameInputComposition={

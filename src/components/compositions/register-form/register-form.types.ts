@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 export type RegisterFormData = {
     nameInputLabel: string;
     toneInputLabel: string;
+    isLoading: boolean;
 };
 
 export type RegisterFormElements = {
