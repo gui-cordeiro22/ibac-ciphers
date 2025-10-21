@@ -9,7 +9,7 @@ import { RouteValidator } from "./route-validator";
 // Pages
 const Home = lazy(() => import("../pages/home"));
 const SundayPage = lazy(() => import("../pages/sunday"));
-//const ThursdayPage = lazy(() => import('../pages/thursday'))
+const ThursdayPage = lazy(() => import("../pages/thursday"));
 
 export const ApplicationRoutes: FunctionComponent = () => {
     return (
@@ -19,10 +19,7 @@ export const ApplicationRoutes: FunctionComponent = () => {
 
                 <Route path="/domingo" element={<RouteValidator component={SundayPage} />} />
 
-                {/* <Route
-          path="/quinta"
-          element={<RouteValidator component={ThursdayPage} />}
-        /> */}
+                <Route path="/quinta" element={<RouteValidator component={ThursdayPage} />} />
 
                 <Route path="*" element={<Navigate to={{ pathname: "/" }} />} />
             </Routes>

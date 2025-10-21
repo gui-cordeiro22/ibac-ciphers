@@ -1,5 +1,5 @@
 // Dependencies
-import type { FunctionComponent } from "react";
+import { useEffect, type FunctionComponent } from "react";
 import { useNavigate } from "react-router-dom";
 
 // Components
@@ -11,10 +11,21 @@ import { Button } from "../../components/elements/button";
 import ibacLogo from "../../assets/ibac-logo.png";
 
 // Store
+import { useMeStores } from "../../hooks/use-me-stores";
 import { mainMenuData } from "../../components/compositions/main-menu/main-menu.stores";
 
 export const HomePage: FunctionComponent = () => {
     const navigate = useNavigate();
+
+    const { state, action } = useMeStores();
+
+    const { handleNavigate } = action;
+
+    console.log("Me State:", state, action);
+
+    useEffect(() => {
+        handleNavigate();
+    }, []);
 
     return (
         <Home

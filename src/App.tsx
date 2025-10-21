@@ -7,13 +7,16 @@ import { GlobalStyle } from "./styles/global";
 
 // Routes
 import { ApplicationRoutes } from "./routes";
+import { MeProvider } from "./stores/me/me.stores";
 
 function App() {
     return (
         <Fragment>
             <GlobalStyle />
             <ToastContainer theme="light" position="bottom-right" limit={1} />
-            <ApplicationRoutes />
+            <MeProvider>
+                <ApplicationRoutes />
+            </MeProvider>
         </Fragment>
     );
 }
