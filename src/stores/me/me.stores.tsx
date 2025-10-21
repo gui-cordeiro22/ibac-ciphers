@@ -2,9 +2,9 @@
 import { createContext, useReducer, type PropsWithChildren } from "react";
 
 // Types
-import type { MeActions, MeProps, MeState } from "./me.stores.types";
+import type { MeActions, MeStores, MeState } from "./me.stores.types";
 
-export const MeContext = createContext<MeProps | null>(null);
+export const MeContext = createContext<MeStores>({} as MeStores);
 
 export const MeReducer = (state: MeState, _action: MeActions): MeState => {
     return state;

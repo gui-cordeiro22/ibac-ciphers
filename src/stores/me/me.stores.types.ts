@@ -11,7 +11,7 @@ export type MeActions = {
     handleNavigate: () => void;
 };
 
-export type MeProps = {
+export type MeStores = {
     state: MeState;
     action: MeActions;
 };
