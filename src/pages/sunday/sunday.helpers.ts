@@ -3,7 +3,9 @@ import type { AxiosResponse } from "axios";
 import type { CiphersCiphersData } from "./sunday.types";
 
 export const ciphersBuilder = (ciphersResponse: AxiosResponse<any>): CiphersCiphersData[] => {
-    return ciphersResponse.data.map((item: any) => {
+    if (!ciphersResponse.data.ciphers) return [];
+
+    return ciphersResponse.data.ciphers.map((item: any) => {
         const { _id, name, tone } = item;
 
         return {

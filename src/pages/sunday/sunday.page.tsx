@@ -62,11 +62,15 @@ export const SundayPage: FunctionComponent = () => {
         fetchCiphers();
     }, []);
 
-    if (!ciphers?.data) {
+    if (ciphers.isLoading) {
         return <LoaderComponent />;
     }
 
-    const ciphersResponse = ciphers?.data;
+    if (!ciphers.data) {
+        return <div>Nenhuma cifra encontrada</div>;
+    }
+
+    const ciphersResponse = ciphers.data;
 
     const handleCreateCipher = async (data: any) => {
         const alreadyExists = cipherAlreadyExists(ciphers, data);

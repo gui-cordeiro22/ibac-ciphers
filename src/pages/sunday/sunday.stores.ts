@@ -67,12 +67,13 @@ export const useCiphersStore = (): CiphersStore => {
                 draft.ciphers.isLoading = true;
             });
 
-            const response = await restAPI.get(`/cifras`);
+            const response = await restAPI.get(`/cifras?page=1`);
 
             const formattedCiphers = ciphersBuilder(response);
 
             setState((draft: CiphersState) => {
                 draft.ciphers.data = formattedCiphers;
+                draft.ciphers.isLoading = false;
             });
 
             return true;
@@ -82,6 +83,7 @@ export const useCiphersStore = (): CiphersStore => {
             }
 
             setState((draft: CiphersState) => {
+                draft.ciphers.data = undefined;
                 draft.ciphers.isLoading = false;
             });
             return false;
