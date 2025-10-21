@@ -27,9 +27,7 @@ import type { RegisterFormResponseData } from "./sunday.types";
 import { useCiphersStore } from "./sunday.stores";
 
 // Utils
-import { buildLayoutColumns, cipherAlreadyExists, formatCounterMessage } from "./sunday.helpers";
-import { useWindowDimensions } from "../../hooks/window-dimensions";
-import { ternary } from "../../utils/ternary";
+import { formatCounterMessage } from "./sunday.helpers";
 
 export const SundayPage: FunctionComponent = () => {
     const { register, handleSubmit, formState, reset } = useForm<RegisterFormResponseData>({
@@ -45,8 +43,6 @@ export const SundayPage: FunctionComponent = () => {
     const [isLoading, setIsLoading] = useState(false);
 
     const [isModalOpened, setIsModalOpened] = useState(false);
-
-    const width = useWindowDimensions().width;
 
     const { actions, state } = useCiphersStore();
 
@@ -72,16 +68,9 @@ export const SundayPage: FunctionComponent = () => {
 
     const ciphersResponse = ciphers.data;
 
+    console.log(ciphers.data);
+
     const handleCreateCipher = async (data: any) => {
-        const alreadyExists = cipherAlreadyExists(ciphers, data);
-
-        if (alreadyExists) {
-            reset();
-            setIsModalOpened(false);
-            toast.error("Já existe uma cifra cadastrada com esses dados.");
-            return;
-        }
-
         setIsLoading(true);
 
         const hasSended = await createCiphers(data);
@@ -104,20 +93,6 @@ export const SundayPage: FunctionComponent = () => {
 
     const cipherCounterMessage = formatCounterMessage(ciphersListLength);
 
-    const sortedCiphers =
-        !!ciphersResponse &&
-        (ciphersResponse ?? [])
-            .filter((cipher: any) => cipher.name.toLowerCase().includes(filterValue.toLowerCase()))
-            .sort((a: any, b: any) => (a.name > b.name ? 1 : -1));
-
-    const columnsNumber = ternary([
-        [width > 1024, 4],
-        [width >= 768, 3],
-        [width < 768, 1],
-    ]);
-
-    const columns = buildLayoutColumns(sortedCiphers, columnsNumber ?? 1);
-
     return (
         <DefaultLayout
             contentPage={
@@ -139,12 +114,8 @@ export const SundayPage: FunctionComponent = () => {
                     />
 
                     <CipherListWrapper
-                        ciphersListComposition={columns.map((column, index) => (
-                            <div key={index}>
-                                {column.map((cipher: any) => (
-                                    <CiphersList key={`cipher-list-item-${cipher._id}`} musicName={cipher.name} musicTone={cipher.tone} />
-                                ))}
-                            </div>
+                        ciphersListComposition={ciphersResponse.map((cipher) => (
+                            <CiphersList key={`cipher-list-item-${cipher._id}`} musicName={cipher.name} musicTone={cipher.tone} />
                         ))}
                     />
 
